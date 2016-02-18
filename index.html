@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> Neighborhood </title>
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <script src="js/libs/knockout-3.2.0.js"></script>
+	<script src="js/libs/jquery.min.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?callback=initialize"  async defer></script> 
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div>
+        <a id="menu" class="header__menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z" />
+            </svg>
+        </a>
+    </div>
+    <div id="page">
+        <nav id="list" class="nav">
+            <p> Filter:
+                <input data-bind="value: filter, valueUpdate: 'afterkeydown'" />
+            </p>
+            <ul data-bind="foreach: listFiltered">
+                <li>
+                    <a href="#" data-bind="text: placeTitle, click: $parent.setItem"></a>
+                </li>
+            </ul>
+        </nav>
+        <div id="map"></div>
+    </div>
+	
+	
+    <script>
+        /*
+         * Open the view list when the menu is clicked.
+         */
+        var menu = document.querySelector('#menu');
+        var list = document.querySelector('.nav');
+		var navLi = document.querySelector('a[data-group-name]');
+		var map = document.querySelector('#map');
+		
+        menu.addEventListener('click', function(e) {
+            list.classList.toggle('open');
+            e.stopPropagation();
+        });
+		
+		map.addEventListener('click', function() {
+			list.classList.remove('open');
+		});
+		
+	
+    </script>
+</body>
+</html>
